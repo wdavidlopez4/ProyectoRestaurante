@@ -51,7 +51,28 @@ public class UsuarioDAO implements IDAO<UsuarioDTO>
 
 	@Override
 	public boolean modificar(UsuarioDTO objeto) throws SQLException {
-		// TODO Auto-generated method stub
+		//desarmar el objeto
+		int codigo = objeto.getCodigo();
+		String correo = objeto.getCorreo();
+		String contraseña = objeto.getContraseña();
+		int estado = objeto.getEstado();
+		String tipo = objeto.getClass().getName();
+		
+		//preparar declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="UPDATE Usuario SET "
+				+ "correo ='"+correo+"', contraseña ='"+contraseña+"', "
+				+ "estado ="+estado+", tipo ='"+tipo+"' "
+				+ "WHERE codigo ="+codigo+";";
+		
+		//ejecutar la declaracion
+		int seEjecuto =declarar.executeUpdate(sql);
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
