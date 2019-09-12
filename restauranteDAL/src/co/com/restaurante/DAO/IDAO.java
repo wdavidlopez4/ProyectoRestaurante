@@ -1,18 +1,54 @@
 package co.com.restaurante.DAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface IDAO<T>
 {
-	public boolean crear(T objeto);
+	/**
+	 * metodo crear, arma el objeto
+	 * @param objeto
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public boolean crear(T objeto)throws SQLException;
 	
-	public boolean modificar(T objeto);
+	/**
+	 * metodo modificar, modifica el objeto"los valores en la db"
+	 * @param objeto
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public boolean modificar(T objeto)throws SQLException;
 	
-	public boolean eliminar(int codigo);
+	/**
+	 * metodo eliminar, elimina el objeto "valores en la db"
+	 * @param codigo
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public boolean eliminar(int codigo)throws SQLException;
 	
-	public T buscarUnoObjeto(int codigo);
+	/**
+	 * metodo buscar un solo objeto, busca el objeto por el codigo
+	 * @param codigo
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public T buscarUnoObjeto(int codigo)throws SQLException;
 	
-	public ArrayList<T> traerLista();
+	/**
+	 * metodo traer lista, trae la lista de objeto
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public ArrayList<T> traerLista()throws SQLException;
 	
-	public boolean desabilitar(int codigo);
+	/**
+	 * metodo desabilitar, indica que a desabilita
+	 * @param codigo
+	 * @return boolean
+	 * @throws SQLException
+	 */
+	public boolean desabilitar(int codigo)throws SQLException;
 }
