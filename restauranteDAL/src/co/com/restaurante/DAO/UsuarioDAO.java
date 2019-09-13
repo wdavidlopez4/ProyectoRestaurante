@@ -78,7 +78,19 @@ public class UsuarioDAO implements IDAO<UsuarioDTO>
 
 	@Override
 	public boolean eliminar(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql= "DELETE FROM Usuario WHERE codigo = "+codigo+";";
+		
+		//ejecutar la declaracion
+		int seEjecuto = declarar.executeUpdate(sql);
+		
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
