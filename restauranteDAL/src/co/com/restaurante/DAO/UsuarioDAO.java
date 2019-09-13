@@ -11,6 +11,11 @@ import co.com.restaurante.DTO.AdministradorDTO;
 import co.com.restaurante.DTO.ClienteDTO;
 import co.com.restaurante.DTO.UsuarioDTO;
 
+/**
+ * clase que implementa la interfaze IDAO, clase que representa el UsuarioDAO
+ * @author wdavi
+ *
+ */
 public class UsuarioDAO implements IDAO<UsuarioDTO>
 {
 	/**
