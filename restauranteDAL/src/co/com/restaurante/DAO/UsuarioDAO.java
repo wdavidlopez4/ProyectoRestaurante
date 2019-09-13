@@ -1,11 +1,14 @@
 package co.com.restaurante.DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import co.com.restaurante.Coneccion.Coneccion;
 import co.com.restaurante.Coneccion.IConeccion;
+import co.com.restaurante.DTO.AdministradorDTO;
+import co.com.restaurante.DTO.ClienteDTO;
 import co.com.restaurante.DTO.UsuarioDTO;
 
 public class UsuarioDAO implements IDAO<UsuarioDTO>
@@ -96,8 +99,33 @@ public class UsuarioDAO implements IDAO<UsuarioDTO>
 
 	@Override
 	public UsuarioDTO buscarUnoObjeto(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		//preparer la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql = "SELECT * FROM Usuario WHERE codigo = "+codigo+";";
+		
+		//ejecutar la decalracion
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		
+		//llenar el objeto dependiendo su tipo administrador O cliente
+		UsuarioDTO usuario = null;
+		
+		if(resultado.next())
+		{
+			if(resultado.getString("tipo").equals("co.com.restaurante.DTO.ClienteDTO"))
+			{
+				usuario = new ClienteDTO(resultado.getInt("codigo"), resultado.getString("correo"), 
+						resultado.getString("contraseña"), resultado.getInt("estado"));
+			}
+			else if(resultado.getString("tipo").equals("co.com.restaurante.DTO.AdministradorDTO"))
+			{
+				usuario = new AdministradorDTO(resultado.getInt("codigo"), resultado.getString("correo"), 
+						resultado.getString("contraseña"), resultado.getInt("estado"));
+			}
+		}
+		
+		return usuario;
 	}
 
 	@Override
