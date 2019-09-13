@@ -43,12 +43,4 @@ public interface IDAO<T>
 	 * @throws SQLException
 	 */
 	public ArrayList<T> traerLista()throws SQLException;
-	
-	/**
-	 * metodo desabilitar, indica que a desabilita
-	 * @param codigo
-	 * @return boolean
-	 * @throws SQLException
-	 */
-	public boolean desabilitar(int codigo)throws SQLException;
 }
