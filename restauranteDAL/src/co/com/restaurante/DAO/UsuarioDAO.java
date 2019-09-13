@@ -130,7 +130,46 @@ public class UsuarioDAO implements IDAO<UsuarioDTO>
 
 	@Override
 	public ArrayList<UsuarioDTO> traerLista() throws SQLException {
-		//
-		return null;
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="SELECT * FROM Usuario;";
+		
+		//ejecutar la declaracion
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		//llenar la lista de objetos
+		UsuarioDTO usuario = null;
+		ArrayList<UsuarioDTO> lista = new ArrayList<UsuarioDTO>();
+		while(resultado.next())
+		{
+			//llenar objetos dependiendo de su tipo
+			if(resultado.getString("tipo").equals("co.com.restaurante.DTO.ClienteDTO"))
+			{
+				usuario = new ClienteDTO(resultado.getInt("codigo"), resultado.getString("correo"), 
+						resultado.getString("contraseña"), resultado.getInt("estado"));
+			}
+			
+			else if(resultado.getString("tipo").equals("co.com.restaurante.DTO.AdministradorDTO"))
+			{
+				usuario = new AdministradorDTO(resultado.getInt("codigo"), resultado.getString("correo"), 
+						resultado.getString("contraseña"), resultado.getInt("estado"));
+			}
+			
+			lista.add(usuario);
+		}
+		return lista;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
