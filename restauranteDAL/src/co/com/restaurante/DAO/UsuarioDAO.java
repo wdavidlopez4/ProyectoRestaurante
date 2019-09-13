@@ -130,16 +130,7 @@ public class UsuarioDAO implements IDAO<UsuarioDTO>
 
 	@Override
 	public ArrayList<UsuarioDTO> traerLista() throws SQLException {
-		// TODO Auto-generated method stub
+		//
 		return null;
 	}
-
-	@Override
-	public boolean desabilitar(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	
-
 }
