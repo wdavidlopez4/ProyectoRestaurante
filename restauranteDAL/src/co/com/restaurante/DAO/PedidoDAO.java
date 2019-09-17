@@ -129,9 +129,35 @@ public class PedidoDAO implements IDAO<PedidoDTO>
 
 	@Override
 	public ArrayList<PedidoDTO> traerLista() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		//preparar la declaracion 
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="SELECT * FROM Pedido;";
+		
+		//ejecutar la declaracion
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		//llenar la lista de objetos
+		PedidoDTO pedido = null;
+		ArrayList<PedidoDTO> lista = new ArrayList<PedidoDTO>();
+		while(resultado.next())
+		{
+			pedido = new PedidoDTO(resultado.getInt("codigo"), resultado.getInt("codigoUsuario"), 
+					resultado.getInt("codigoComedero"), resultado.getDouble("totalAPagar"), 
+					resultado.getInt("totalProductos"), resultado.getInt("estado"));
+			
+			lista.add(pedido);
+		}
+		
+		return lista;
 	}
-	
-	
 }
+
+
+
+
+
+
+
+
+
