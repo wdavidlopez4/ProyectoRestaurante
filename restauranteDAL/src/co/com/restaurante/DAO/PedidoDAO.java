@@ -1,6 +1,7 @@
 package co.com.restaurante.DAO;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import co.com.restaurante.Coneccion.Coneccion;
@@ -29,19 +30,76 @@ public class PedidoDAO implements IDAO<PedidoDTO>
 
 	@Override
 	public boolean crear(PedidoDTO objeto) throws SQLException {
-		// TODO Auto-generated method stub
+		//desarmar el objeto
+		int codigoUsuario = objeto.getCodigoUsuario();
+		int codigoComedero = objeto.getCodigoComedero();
+		double totalAPagar = objeto.getTotalAPagar();
+		int totalProductos = objeto.getTotalProductos();
+		int estado = objeto.getEstado();
+		
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql = "INSERT INTO Pedido "
+				+ "(codigoUsuario, codigoComedero, totalAPagar, totalProductos, estado) "
+				+ "VALUES "
+				+ "("+codigoUsuario+", "+codigoComedero+", "+totalAPagar+", "+totalProductos+", "+estado+");";
+		
+		//ejecutar la declaracion
+		int seEjecuto = declarar.executeUpdate(sql);
+		
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean modificar(PedidoDTO objeto) throws SQLException {
-		// TODO Auto-generated method stub
+		//desarmar el objeto
+		int codigo = objeto.getCodigo();
+		int codigoUsuario = objeto.getCodigoUsuario();
+		int codigoComedero = objeto.getCodigoComedero();
+		double totalAPagar = objeto.getTotalAPagar();
+		int totalProductos = objeto.getTotalProductos();
+		int estado = objeto.getEstado();
+		
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="UPDATE Pedido SET "
+				+ "codigoUsuario ="+codigoUsuario+", codigoComedero ="+codigoComedero+", "
+				+ "totalAPagar ="+totalAPagar+", totalProductos ="+totalProductos+", "
+				+ "estado ="+estado+" "
+				+ "WHERE codigo ="+codigo+";";
+		
+		//ejecutar la declaracion
+		int seEjecuto = declarar.executeUpdate(sql);
+		
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean eliminar(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql = "DELETE FROM Pedido WHERE codigo = "+codigo+";";
+		
+		//ejecutar la declaracion
+		int seEjecuta = declarar.executeUpdate(sql);
+		
+		if(seEjecuta == 1)
+		{
+			return true;
+		}
 		return false;
 	}
 
