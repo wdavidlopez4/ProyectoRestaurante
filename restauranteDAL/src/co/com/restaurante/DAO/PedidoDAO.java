@@ -1,5 +1,6 @@
 package co.com.restaurante.DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -105,8 +106,25 @@ public class PedidoDAO implements IDAO<PedidoDTO>
 
 	@Override
 	public PedidoDTO buscarUnoObjeto(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="SELECT * FROM Pedido WHERE codigo = "+codigo+";";
+		
+		//ejecutar la delcaracion
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		
+		//armar el objeto 
+		PedidoDTO pedido = null;
+		if(resultado.next())
+		{
+			pedido = new PedidoDTO(resultado.getInt("codigo"), resultado.getInt("codigoUsuario"), 
+					resultado.getInt("codigoComedero"), resultado.getDouble("totalAPagar"), 
+					resultado.getInt("totalProductos"), resultado.getInt("estado"));
+		}
+		
+		return pedido;
 	}
 
 	@Override
