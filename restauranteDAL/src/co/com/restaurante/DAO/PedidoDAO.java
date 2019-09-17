@@ -152,12 +152,3 @@ public class PedidoDAO implements IDAO<PedidoDTO>
 		return lista;
 	}
 }
-
-
-
-
-
-
-
-
-
