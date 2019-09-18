@@ -4,13 +4,13 @@ package co.com.restaurante.DTO;
  * @author wdavi
  *
  */
-public class mesaPersonalDTO extends ComederoDTO
+public class MesaPersonalDTO extends ComederoDTO
 {
 	/**constructor 1 de la clase mesaPersonalDTO SIN CODIGO
 	 * @param cantidadSillas
 	 * @param posicion
 	 */
-	public mesaPersonalDTO(int cantidadSillas, int posicion, int estado)
+	public MesaPersonalDTO(int cantidadSillas, int posicion, int estado)
 	{
 		super(cantidadSillas, posicion, estado);
 	}
@@ -21,7 +21,7 @@ public class mesaPersonalDTO extends ComederoDTO
 	 * @param cantidadSillas
 	 * @param posicion
 	 */
-	public mesaPersonalDTO(int codigo, int cantidadSillas, int posicion, int estado)
+	public MesaPersonalDTO(int codigo, int cantidadSillas, int posicion, int estado)
 	{
 		super(cantidadSillas, posicion, estado);
 		this.codigo = codigo;
