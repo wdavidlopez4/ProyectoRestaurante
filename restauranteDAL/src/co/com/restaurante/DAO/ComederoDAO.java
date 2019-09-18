@@ -1,6 +1,7 @@
 package co.com.restaurante.DAO;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import co.com.restaurante.Coneccion.Coneccion;
@@ -29,7 +30,27 @@ public class ComederoDAO implements IDAO<ComederoDTO>
 
 	@Override
 	public boolean crear(ComederoDTO objeto) throws SQLException {
-		// TODO Auto-generated method stub
+		//desarmar el objeto
+		int cantidadSillas = objeto.getCantidadSillas();
+		int posicion = objeto.getPosicion();
+		int estado = objeto.getEstado();
+		String tipo = objeto.getClass().getName();
+		
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql="INSERT INTO Comedero "
+				+ "(cantidadSillas, posicion, estado, tipo) "
+				+ "VALUES "
+				+ "("+cantidadSillas+", "+posicion+", "+estado+", '"+tipo+"');";
+		
+		//ejecutar la declaracion
+		int seEjecuto = declarar.executeUpdate(sql);
+		
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
 		return false;
 	}
 
