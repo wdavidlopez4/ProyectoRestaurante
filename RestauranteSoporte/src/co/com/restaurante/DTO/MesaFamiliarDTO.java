@@ -10,9 +10,9 @@ public class MesaFamiliarDTO extends ComederoDTO
 	 * @param cantidadSillas
 	 * @param posicion
 	 */
-	public MesaFamiliarDTO(int cantidadSillas, int posicion)
+	public MesaFamiliarDTO(int cantidadSillas, int posicion, int estado)
 	{
-		super(cantidadSillas, posicion);
+		super(cantidadSillas, posicion, estado);
 	}
 	
 	
@@ -21,9 +21,9 @@ public class MesaFamiliarDTO extends ComederoDTO
 	 * @param cantidadSillas
 	 * @param posicion
 	 */
-	public MesaFamiliarDTO(int codigo, int cantidadSillas, int posicion)
+	public MesaFamiliarDTO(int codigo, int cantidadSillas, int posicion, int estado)
 	{
-		super(cantidadSillas, posicion);
+		super(cantidadSillas, posicion, estado);
 		this.codigo = codigo;
 	}
 }
