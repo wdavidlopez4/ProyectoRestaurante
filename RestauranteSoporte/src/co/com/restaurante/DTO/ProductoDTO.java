@@ -40,7 +40,7 @@ public abstract class ProductoDTO
 	/**
 	 * atributo que representa el precio del producto
 	 */
-	protected double Precio;
+	protected double precio;
 	
 	/**
 	 * atributo que representa el costo del producto
@@ -55,15 +55,35 @@ public abstract class ProductoDTO
 	/**
 	 * atributo que representa el descripcion del producto
 	 */
-	protected String Descripcion;
+	protected String descripcion;
 	
 	/**
-	 * constructor
+	 * atributo que representa el estado
+	 */
+	protected int estado;
+	
+	
+	/**
+	 * @param codigoPedido
+	 * @param nombre
+	 * @param disponibilidad
+	 * @param precio
+	 * @param costo
+	 * @param tiempoPreparacion
+	 * @param descripcion
+	 * @param estado
 	 */
 	public ProductoDTO(int codigoPedido, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String Descripcion)
+			double costo, double tiempoPreparacion, String descripcion, int estado)
 	{
-		
+		this.codigoPedido = codigoPedido;
+		this.nombre = nombre;
+		this.disponibilidad = disponibilidad;
+		this.precio = precio;
+		this.costo = costo;
+		this.tiempoPreparacion = tiempoPreparacion;
+		this.descripcion = descripcion;
+		this.estado = estado;
 	}
 
 	/**
@@ -126,14 +146,14 @@ public abstract class ProductoDTO
 	 * @return precio
 	 */
 	public double getPrecio() {
-		return Precio;
+		return precio;
 	}
 
 	/**
 	 * @param precio
 	 */
 	public void setPrecio(double precio) {
-		Precio = precio;
+		precio = precio;
 	}
 
 	/**
@@ -168,14 +188,28 @@ public abstract class ProductoDTO
 	 * @return descripcion
 	 */
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	/**
 	 * @param descripcion
 	 */
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		descripcion = descripcion;
+	}
+
+	/**
+	 * @return estado
+	 */
+	public int getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado
+	 */
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 	
 	
