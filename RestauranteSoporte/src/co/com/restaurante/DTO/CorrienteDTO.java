@@ -17,9 +17,10 @@ public class CorrienteDTO extends ProductoDTO
 	 * @param Descripcion
 	 */
 	public CorrienteDTO(int codigoPedido, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String Descripcion)
+			double costo, double tiempoPreparacion, String Descripcion, int estado)
 	{
-		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion);
+		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion, 
+				estado);
 	}
 	
 	
@@ -34,9 +35,10 @@ public class CorrienteDTO extends ProductoDTO
 	 * @param Descripcion
 	 */
 	public CorrienteDTO(int codigo, int codigoPedido, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String Descripcion)
+			double costo, double tiempoPreparacion, String Descripcion, int estado)
 	{
-		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion);
+		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion, 
+				estado);
 		this.codigo = codigo;
 	}
 }
