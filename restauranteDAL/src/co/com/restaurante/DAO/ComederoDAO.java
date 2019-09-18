@@ -133,9 +133,32 @@ public class ComederoDAO implements IDAO<ComederoDTO>
 
 	@Override
 	public ArrayList<ComederoDTO> traerLista() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="SELECT * FROM Comedero;";
+		
+		//ejecutar la declaracion y almacenarla
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		//llenar la lista de objetos
+		ComederoDTO comedero = null;
+		ArrayList<ComederoDTO> lista = new ArrayList<ComederoDTO>();
+		while(resultado.next())
+		{
+			if(resultado.getString("tipo").equals("co.com.restaurante.DTO.MesaFamiliarDTO"))
+			{
+				comedero = new MesaFamiliarDTO(resultado.getInt("codigo"), resultado.getInt("cantidadSillas"),
+						resultado.getInt("posicion"), resultado.getInt("estado"));
+			}
+			else if(resultado.getString("tipo").equals("co.com.restaurante.DTO.MesaPersonalDTO"))
+			{
+				comedero = new MesaPersonalDTO(resultado.getInt("codigo"), resultado.getInt("cantidadSillas"),
+						resultado.getInt("posicion"), resultado.getInt("estado"));
+			}
+			
+			lista.add(comedero);
+		}
+		return lista;
 	}
-	
-	
 }
