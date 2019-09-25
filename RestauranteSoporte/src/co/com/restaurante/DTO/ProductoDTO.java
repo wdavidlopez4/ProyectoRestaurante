@@ -62,11 +62,6 @@ public abstract class ProductoDTO
 	 */
 	protected int estado;
 	
-	/**
-	 * atributo que representa el tipo de objeto de la clase
-	 */
-	protected String tipo;
-	
 	
 	/**
 	 * @param codigoPedido
@@ -77,10 +72,9 @@ public abstract class ProductoDTO
 	 * @param tiempoPreparacion
 	 * @param descripcion
 	 * @param estado
-	 * @param tipo
 	 */
 	public ProductoDTO(int codigoPedido, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String descripcion, int estado, String tipo)
+			double costo, double tiempoPreparacion, String descripcion, int estado)
 	{
 		this.codigoPedido = codigoPedido;
 		this.nombre = nombre;
@@ -90,7 +84,6 @@ public abstract class ProductoDTO
 		this.tiempoPreparacion = tiempoPreparacion;
 		this.descripcion = descripcion;
 		this.estado = estado;
-		this.tipo = tipo;
 	}
 
 	/**
@@ -218,20 +211,5 @@ public abstract class ProductoDTO
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
-	/**
-	 * @return tipo
-	 */
-	public String getTipo() {
-		return tipo;
-	}
-
-	/**
-	 * @param tipo
-	 */
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	
 	
 }
