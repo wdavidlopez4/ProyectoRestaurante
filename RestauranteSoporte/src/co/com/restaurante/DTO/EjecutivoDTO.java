@@ -2,6 +2,9 @@ package co.com.restaurante.DTO;
 
 public class EjecutivoDTO extends ProductoDTO
 {
+	/**
+	 * atributo que representa el precio extra
+	 */
 	private double precioExtra;
 	
 	/**constructor 1 de la clase CorrienteDTO SIN CODIGO
@@ -13,8 +16,8 @@ public class EjecutivoDTO extends ProductoDTO
 	 * @param tiempoPreparacion
 	 * @param Descripcion
 	 */
-	public EjecutivoDTO(int codigoPedido, double precioExtra, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String Descripcion, int estado)
+	public EjecutivoDTO(int codigoPedido, String nombre, String disponibilidad, double precio, 
+			double costo, double tiempoPreparacion, String Descripcion, int estado, double precioExtra)
 	{
 		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion, 
 				estado);
@@ -32,8 +35,8 @@ public class EjecutivoDTO extends ProductoDTO
 	 * @param tiempoPreparacion
 	 * @param Descripcion
 	 */
-	public EjecutivoDTO(int codigo, int codigoPedido, double precioExtra, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String Descripcion, int estado)
+	public EjecutivoDTO(int codigo, int codigoPedido, String nombre, String disponibilidad, double precio, 
+			double costo, double tiempoPreparacion, String Descripcion, int estado, double precioExtra)
 	{
 		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion, 
 				estado);
