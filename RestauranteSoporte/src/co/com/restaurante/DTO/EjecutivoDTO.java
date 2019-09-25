@@ -18,14 +18,12 @@ public class EjecutivoDTO extends ProductoDTO
 	 * @param Descripcion
 	 * @param estado
 	 * @param precioExtra
-	 * @param tipo
 	 */
 	public EjecutivoDTO(int codigoPedido, String nombre, String disponibilidad, double precio, 
-			double costo, double tiempoPreparacion, String Descripcion, int estado, 
-			double precioExtra, String tipo)
+			double costo, double tiempoPreparacion, String Descripcion, int estado, double precioExtra)
 	{
 		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion, 
-				estado, tipo);
+				estado);
 		this.precioExtra = precioExtra;
 	}
 	
@@ -40,14 +38,13 @@ public class EjecutivoDTO extends ProductoDTO
 	 * @param Descripcion
 	 * @param estado
 	 * @param precioExtra
-	 * @param tipo
 	 */
 	public EjecutivoDTO(int codigo, int codigoPedido, String nombre, String disponibilidad, double precio, 
 			double costo, double tiempoPreparacion, String Descripcion, int estado, 
-			double precioExtra, String tipo)
+			double precioExtra)
 	{
 		super(codigoPedido, nombre, disponibilidad, precio, costo, tiempoPreparacion, Descripcion, 
-				estado, tipo);
+				estado);
 		this.codigo = codigo;
 		this.precioExtra = precioExtra;
 	}
