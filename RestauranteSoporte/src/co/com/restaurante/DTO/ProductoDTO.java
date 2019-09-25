@@ -153,7 +153,7 @@ public abstract class ProductoDTO
 	 * @param precio
 	 */
 	public void setPrecio(double precio) {
-		precio = precio;
+		this.precio = precio;
 	}
 
 	/**
@@ -195,7 +195,7 @@ public abstract class ProductoDTO
 	 * @param descripcion
 	 */
 	public void setDescripcion(String descripcion) {
-		descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	/**
