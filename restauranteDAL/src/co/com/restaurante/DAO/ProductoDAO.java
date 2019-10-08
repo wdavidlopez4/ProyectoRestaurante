@@ -82,7 +82,52 @@ public class ProductoDAO implements IDAO<ProductoDTO>
 
 	@Override
 	public boolean modificar(ProductoDTO objeto) throws SQLException {
-		// TODO Auto-generated method stub
+		//desarmar el objeto
+		int codigo = objeto.getCodigo();
+		int  codigoPedido = objeto.getCodigoPedido();
+		String nombre = objeto.getNombre();
+		String disponibilidad = objeto.getDisponibilidad();
+		double precio = objeto.getPrecio();
+		double costo = objeto.getCosto();
+		double tiempoPreparacion = objeto.getTiempoPreparacion();
+		String descripcion = objeto.getDescripcion();
+		String tipo = objeto.getClass().getName();
+		int estado = objeto.getEstado();
+		
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		String sql ="";
+		
+		if(objeto instanceof CorrienteDTO)
+		{
+			sql ="UPDATE `producto` SET "
+					+ "`codigoPedido`="+codigoPedido+",`nombre`='"+nombre+"',`disponibilidad`='"+disponibilidad+"',"
+					+ "`precio`="+precio+",`costo`="+costo+",`tiempoPreparacion`="+tiempoPreparacion+","
+					+ "`descripcion`='"+descripcion+"',`tipo`='"+tipo+"',"
+					+ "`estado`="+estado+" WHERE  `codigo`="+codigo+";";
+		}
+		else if(objeto instanceof EjecutivoDTO)
+		{
+			//hacer casteo para poder devolver un objeto tipo ejecutivo uso de polimorfismo
+			EjecutivoDTO ejecutivo = (EjecutivoDTO)objeto;
+			
+			//como ya se realizo el castin ahora si podemos ejecutar el metodo espesifico de la clase ejecutivo ya que este metodo no lo eredamos
+			double precioExtra = ejecutivo.getPrecioExtra();
+			
+			sql ="UPDATE `producto` SET "
+					+ "`codigoPedido`="+codigoPedido+",`nombre`='"+nombre+"',`disponibilidad`='"+disponibilidad+"',"
+					+ "`precio`="+precio+",`costo`="+costo+",`tiempoPreparacion`="+tiempoPreparacion+","
+					+ "`descripcion`='"+descripcion+"',`tipo`='"+tipo+"',"
+					+ "`estado`="+estado+", `estado`="+precioExtra+" WHERE  `codigo`="+codigo+";";
+		}
+		
+		//ejecutar la declaracion
+		int seEjecuto =declarar.executeUpdate(sql);
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
