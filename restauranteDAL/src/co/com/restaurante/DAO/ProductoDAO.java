@@ -133,7 +133,17 @@ public class ProductoDAO implements IDAO<ProductoDTO>
 
 	@Override
 	public boolean eliminar(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
+		//preparar la declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql = "DELETE FROM `producto` WHERE codigo = "+codigo+";";
+		
+		//ejecutar la declaracion
+		int seEjecuto = declarar.executeUpdate(sql);
+		if(seEjecuto == 1)
+		{
+			return true;
+		}
 		return false;
 	}
 
