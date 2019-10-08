@@ -199,9 +199,56 @@ public class ProductoDAO implements IDAO<ProductoDTO>
 
 	@Override
 	public ArrayList<ProductoDTO> traerLista() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		//preparar declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="SELECT * FROM `producto`;";
+		
+		//ejecutar declaracion
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		//llenar la lista de ojetos
+		ProductoDTO producto = null;
+		ArrayList<ProductoDTO> lista = new ArrayList<ProductoDTO>();
+		
+		while(resultado.next())
+		{
+			if(resultado.getString("tipo").equals("co.com.restaurante.DTO.CorrienteDTO"))
+			{
+				int codigo = resultado.getInt("codigo");
+				int codigoPedido = resultado.getInt("codigoPedido");
+				String nombre = resultado.getString("nombre");
+				String disponibilidad = resultado.getString("disponibilidad");
+				double precio = resultado.getDouble("precio");
+				double costo = resultado.getDouble("costo");
+				double tiempoPreparacion = resultado.getDouble("tiempoPreparacion");
+				String descripcion = resultado.getString("descripcion");
+				int estado = resultado.getInt("estado");
+				
+				producto = new CorrienteDTO(codigo, codigoPedido, nombre, disponibilidad, precio, 
+						costo, tiempoPreparacion, descripcion, estado);
+			}
+			
+			else if(resultado.getString("tipo").equals("co.com.restaurante.DTO.EjecutivoDTO"))
+			{
+				int codigo = resultado.getInt("codigo");
+				int codigoPedido = resultado.getInt("codigoPedido");
+				String nombre = resultado.getString("nombre");
+				String disponibilidad = resultado.getString("disponibilidad");
+				double precio = resultado.getDouble("precio");
+				double costo = resultado.getDouble("costo");
+				double tiempoPreparacion = resultado.getDouble("tiempoPreparacion");
+				String descripcion = resultado.getString("descripcion");
+				int estado = resultado.getInt("estado");
+				Double precioExtra = resultado.getDouble("precioExtra");
+				
+				producto = new EjecutivoDTO(codigo, codigoPedido, nombre, disponibilidad, precio, 
+						costo, tiempoPreparacion, descripcion, estado, precioExtra);
+			}
+			lista.add(producto);
+		}
+		
+		return lista;
 	}
-	
-	
 }
+
