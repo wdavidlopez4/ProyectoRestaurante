@@ -1,5 +1,6 @@
 package co.com.restaurante.DAO;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -149,8 +150,51 @@ public class ProductoDAO implements IDAO<ProductoDTO>
 
 	@Override
 	public ProductoDTO buscarUnoObjeto(int codigo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		//preparar declaracion
+		Statement declarar = coneccion.conectar().createStatement();
+		
+		String sql ="SELECT * FROM `producto` WHERE codigo = "+codigo+";";
+		
+		//ejecutar declaracion
+		ResultSet resultado = declarar.executeQuery(sql);
+		
+		//llegar el objeto dependiendo de su tipo
+		ProductoDTO producto = null;
+		if(resultado.next())
+		{
+			if(resultado.getString("tipo").equals("co.com.restaurante.DTO.CorrienteDTO"))
+			{
+				int codigoPedido = resultado.getInt("codigoPedido");
+				String nombre = resultado.getString("nombre");
+				String disponibilidad = resultado.getString("disponibilidad");
+				double precio = resultado.getDouble("precio");
+				double costo = resultado.getDouble("costo");
+				double tiempoPreparacion = resultado.getDouble("tiempoPreparacion");
+				String descripcion = resultado.getString("descripcion");
+				int estado = resultado.getInt("estado");
+				
+				producto = new CorrienteDTO(codigo, codigoPedido, nombre, disponibilidad, precio, 
+						costo, tiempoPreparacion, descripcion, estado);
+			}
+			
+			else if(resultado.getString("tipo").equals("co.com.restaurante.DTO.EjecutivoDTO"))
+			{	
+				int codigoPedido = resultado.getInt("codigoPedido");
+				String nombre = resultado.getString("nombre");
+				String disponibilidad = resultado.getString("disponibilidad");
+				double precio = resultado.getDouble("precio");
+				double costo = resultado.getDouble("costo");
+				double tiempoPreparacion = resultado.getDouble("tiempoPreparacion");
+				String descripcion = resultado.getString("descripcion");
+				int estado = resultado.getInt("estado");
+				Double precioExtra = resultado.getDouble("precioExtra");
+				
+				producto = new EjecutivoDTO(codigo, codigoPedido, nombre, disponibilidad, precio, 
+						costo, tiempoPreparacion, descripcion, estado, precioExtra);
+			}
+		}
+		
+		return producto;
 	}
 
 	@Override
